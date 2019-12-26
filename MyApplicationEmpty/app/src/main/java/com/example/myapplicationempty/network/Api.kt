@@ -2,10 +2,7 @@ package com.example.myapplicationempty.network
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.myapplicationempty.LoginForm
-import com.example.myapplicationempty.SHARED_PREF_TOKEN_KEY
-import com.example.myapplicationempty.Task
-import com.example.myapplicationempty.TokenResponse
+import com.example.myapplicationempty.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.MultipartBody
@@ -65,6 +62,9 @@ interface UserService {
 
     @POST("users/login")
     suspend fun login(@Body user: LoginForm): Response<TokenResponse>
+
+    @POST("users/sign_up")
+    suspend fun signUp(@Body user: SignUpForm): Response<TokenResponse>
 }
 
 interface TasksService {
