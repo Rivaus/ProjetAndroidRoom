@@ -15,3 +15,17 @@ data class Task(
     var title : String,
     @Json(name = "description")
     var description : String)
+
+
+/**
+ * Map Task to domain entities
+ */
+fun List<Task>.asDomainModel(): List<Task> {
+    return map {
+        Task(
+            id = it.id,
+            title = it.title,
+            description = it.description
+        )
+    }
+}

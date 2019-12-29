@@ -9,17 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationempty.network.Api
 import com.example.myapplicationempty.network.TasksRepository
+import com.example.myapplicationempty.roomCashTruc.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import kotlinx.android.synthetic.main.fragment_tasks.view.*
 import kotlinx.coroutines.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 
 class TasksFragment : Fragment() {
@@ -27,6 +27,11 @@ class TasksFragment : Fragment() {
     private val tasksRepo = TasksRepository()
 
     private val tasks = mutableListOf<Task>()
+
+    private val tasksViewModel by lazy {
+        ViewModelProviders.of(this).get(TaskViewModel::class.java)
+    }
+
 
     private val coroutineScope = MainScope()
 
