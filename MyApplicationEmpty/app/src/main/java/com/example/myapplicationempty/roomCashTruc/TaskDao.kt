@@ -1,5 +1,6 @@
 package com.example.myapplicationempty.roomCashTruc
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,7 +12,7 @@ import com.example.myapplicationempty.Task
 interface TaskDao {
 
     @Query("SELECT * from tasks_table")
-    fun getTasks(): List<Task>
+    fun getTasks(): LiveData<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(task: Task)
