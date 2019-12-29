@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
-@Entity(tableName= "Tasks")
+@Entity(tableName= "tasks_table")
 
 
 data class Task(
