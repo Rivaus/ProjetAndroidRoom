@@ -16,9 +16,16 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     init {
         // Gets reference to WordDao from WordRoomDatabase to construct
         // the correct WordRepository.
+        refreshDataFromRepository()
         val tasksDao = TaskRoomDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(tasksDao)
         allTasks = repository.allTasks
+    }
+
+    fun loadTasks() {
+        viewModelScope.launch {
+            repository.loadTasks()
+        }
     }
 
     /**
@@ -31,5 +38,28 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun insert(task: Task) = viewModelScope.launch {
         repository.insert(task)
     }
+
+    fun deleteTask(id:String) {
+        viewModelScope.launch {
+            repository.delete(id)
+        }
+    }
+
+    fun updateTask(id:String,task: Task) {
+        viewModelScope.launch {
+            repository.update(task)
+        }
+    }
+
+    /**
+     * Refresh data from the repository. Use a coroutine launch to run in a
+     * background thread.
+     */
+    private fun refreshDataFromRepository() {
+        viewModelScope.launch {
+            repository.refresh()
+        }
+    }
+
 
 }

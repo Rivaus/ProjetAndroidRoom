@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.example.myapplicationempty.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -69,7 +70,7 @@ interface UserService {
 
 interface TasksService {
     @GET("tasks")
-    suspend fun getTasks(): Response<List<Task>>
+    suspend fun getTasks(): Deferred<Response<List<Task>>>
 
     @DELETE("tasks/{id}")
     suspend fun deleteTask(@Path("id") id: String): Response<String>

@@ -17,10 +17,11 @@ class TasksRepository {
         return tasks
     }
 
+
     private suspend fun loadTasks(): List<Task>? {
         val tasksResponse = tasksService.getTasks()
         Log.e("loadTasks", tasksResponse.toString())
-        return if (tasksResponse.isSuccessful) tasksResponse.body() else null
+        return if (tasksResponse.isCompleted) tasksResponse.getCompleted().body() else null
     }
 
     suspend fun  deleteTask(id : String): Boolean{

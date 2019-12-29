@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplicationempty.network.Api
 import com.example.myapplicationempty.network.TasksRepository
+import com.example.myapplicationempty.roomCashTruc.TaskRepository
 import com.example.myapplicationempty.roomCashTruc.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_tasks.*
 import kotlinx.android.synthetic.main.fragment_tasks.view.*
@@ -67,6 +68,8 @@ class TasksFragment : Fragment() {
                 adapter.notifyDataSetChanged()
             }
         })
+
+        tasksViewModel.loadTasks()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle? ): View? {
